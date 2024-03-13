@@ -1,0 +1,23 @@
+.header-container {
+    background-color: blue;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.title {
+    margin: 0;
+}
+
+.user-icon-container {
+    margin-left: auto;
+
+    cursor: pointer;
+}
+
+.user-icon {
+    font-size: 20px;
+}

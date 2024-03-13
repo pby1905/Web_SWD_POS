@@ -1,0 +1,144 @@
+/* ListProduct.css */
+
+.product-list-container-all h2 {
+    text-align: center;
+    font-size: xx-large;
+}
+.add-product {
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: blue;
+    color: white;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.add-product:hover {
+    background-color: rgb(43, 128, 224);
+}
+
+.product-list-container {
+    text-align: center;
+    padding: 0 100px;
+}
+.product-list-container-button {
+    text-align: end;
+}
+.product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.product-item:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    margin-right: 30px;
+    border-radius: 50%;
+}
+
+.product-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.product-info span {
+    display: block;
+}
+
+.product-name {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.product-quantity {
+    font-size: 14px;
+    color: #fb0303;
+    margin-top: 5px;
+}
+
+.product-buttons button {
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.product-buttons button.edit {
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+    border: none;
+}
+
+.product-buttons button.delete {
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+.product-buttons button:hover {
+    background-color: rgb(43, 128, 224); /* Màu hover cho nút Edit */
+}
+
+.product-buttons button.delete:hover {
+    background-color: rgb(243, 54, 54); /* Màu hover cho nút Delete */
+}
+
+/* ListProduct.css */
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination li {
+    margin-right: 5px;
+}
+
+.pagination a {
+    color: blue;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 2px solid blue;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: blue;
+    color: white;
+}
+
+.pagination .active a {
+    background-color: blue;
+    color: white;
+    border: 2px solid blue;
+}

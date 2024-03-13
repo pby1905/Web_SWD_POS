@@ -1,0 +1,31 @@
+/* HomePage.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    background-color: black;
+    color: white;
+}
+
+.text {
+    margin-bottom: 130px;
+    font-size: 70px;
+}
+
+.button {
+    padding: 15px 40px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    border-radius: 20px;
+    border: 3px solid white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: darkblue;
+}

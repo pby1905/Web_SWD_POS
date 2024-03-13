@@ -1,0 +1,91 @@
+/* OrderSuccess.css */
+
+.order-success-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.order-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Đặt justify-content thành center để giữ sản phẩm ở giữa trang */
+}
+
+.order-item {
+    width: 100%; /* Thay đổi chiều rộng thành 100% để hiển thị sản phẩm trên một dòng */
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.order-item:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-details {
+    margin-top: 10px;
+}
+
+.order-title {
+    font-size: xx-large;
+    color: black;
+}
+
+.product-name {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.product-quantity {
+    font-size: 14px;
+    color: #fb0303;
+    margin-top: 5px;
+}
+
+.product-buttons button {
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.product-buttons button.edit {
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+    border: none;
+}
+
+.product-buttons button.delete {
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+.product-buttons button:hover {
+    background-color: rgb(43, 128, 224);
+}
+
+.product-buttons button.delete:hover {
+    background-color: rgb(243, 54, 54);
+}
