@@ -1,4 +1,3 @@
-// ListProduct.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
@@ -35,7 +34,7 @@ const ListProduct = () => {
     const displayedProducts = products.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
     const handleEdit = (productId) => {
-        navigate(`/editproduct/${productId}`);
+        navigate(`/editproduct/${productId}`); // Chuyển hướng đến trang chỉnh sửa sản phẩm với id của sản phẩm
     };
 
     const handleDelete = (productId) => {
