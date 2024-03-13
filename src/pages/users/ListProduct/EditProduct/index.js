@@ -1,38 +1,63 @@
-// EditProduct.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './EditProduct.css'; // Import CSS file
+import axios from 'axios';
+import './EditProduct.css';
 
 const EditProduct = () => {
     const { id } = useParams();
-
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState({
+        productName: '',
+        price: 0,
+        quantity: 0,
+        description: '',
+        images: [{ imagePath: '' }],
+    });
 
     useEffect(() => {
-        // Tải dữ liệu sản phẩm từ nguồn dữ liệu của bạn (API hoặc Redux store)
-        // sử dụng id để xác định sản phẩm cần chỉnh sửa
-        // và cập nhật state 'product' với dữ liệu tương ứng
+        async function fetchProduct() {
+            try {
+                const response = await axios.get(`https://localhost:7052/Products/GetProductById?id=${id}`);
+                setProduct(response.data);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        }
+
+        fetchProduct();
     }, [id]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
+        setProduct((prevProduct) => ({
+            ...prevProduct,
+            [name]: value,
+        }));
     };
 
-    const handleSaveChanges = () => {
-        // Đây là nơi bạn có thể gửi dữ liệu cập nhật lên server hoặc cập nhật Redux store
-        console.log('Product updated:', product);
+    const handleSaveChanges = async () => {
+        try {
+            await axios.put(`https://localhost:7052/Products/UpdateProduct?productId=${id}`, product);
+            console.log('Product updated:', product);
+        } catch (error) {
+            console.error('Error updating product:', error);
+        }
     };
 
     return (
         <div className="edit-product-container">
             <h2>Edit Product</h2>
             <div>
-                <img src={product.imageUrl} className="image-preview" />
+                <img src={product.images[0].imagePath} className="image-preview" alt="Product" />
             </div>
             <div>
-                <label htmlFor="name">Product Name:</label>
-                <input type="text" id="name" name="name" value={product.name} onChange={handleInputChange} />
+                <label htmlFor="productName">Product Name:</label>
+                <input
+                    type="text"
+                    id="productName"
+                    name="productName"
+                    value={product.productName}
+                    onChange={handleInputChange}
+                />
             </div>
             <div>
                 <label htmlFor="quantity">Quantity:</label>
@@ -47,6 +72,27 @@ const EditProduct = () => {
             <div>
                 <label htmlFor="price">Price:</label>
                 <input type="number" id="price" name="price" value={product.price} onChange={handleInputChange} />
+            </div>
+            <div>
+                <label htmlFor="description">Description:</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    value={product.description}
+                    onChange={handleInputChange}
+                />
+            </div>
+            <div>
+                <label htmlFor="imagePath">Image URL:</label>
+                <input
+                    type="text"
+                    id="imagePath"
+                    name="imagePath"
+                    value={product.images[0].imagePath}
+                    onChange={(e) =>
+                        setProduct((prevProduct) => ({ ...prevProduct, images: [{ imagePath: e.target.value }] }))
+                    }
+                />
             </div>
 
             <div>
