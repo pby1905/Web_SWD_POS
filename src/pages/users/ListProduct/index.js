@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import './ListProduct.css';
-
+import {deleteProductAPI} from '../../../Service/APIService';
 const itemsPerPage = 5;
 
 const ListProduct = () => {
@@ -11,7 +11,7 @@ const ListProduct = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [deleteP, setDelete] = useState([]);
     const fetchProducts = async () => {
         try {
             const response = await axios.get('https://localhost:7052/Products/ProductList');
@@ -22,7 +22,9 @@ const ListProduct = () => {
             setLoading(false);
         }
     };
+    
 
+   
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -37,7 +39,9 @@ const ListProduct = () => {
         navigate(`/editproduct/${productId}`); // Chuyển hướng đến trang chỉnh sửa sản phẩm với id của sản phẩm
     };
 
-    const handleDelete = (productId) => {
+    const handleDelete = async (productId) => {
+        await deleteProductAPI(productId);
+        window.location.reload();
         console.log(`Delete product with ID: ${productId}`);
     };
 
@@ -60,7 +64,7 @@ const ListProduct = () => {
                         <li key={product.productId} className="product-item">
                             {product.listImages.length > 0 && (
                                 <img
-                                    src={`https://localhost:7052/${product.listImages[0].imagePath}`}
+                                    src={product.listImages[0].imagePath}
                                     alt={product.productName}
                                     className="product-image"
                                 />
