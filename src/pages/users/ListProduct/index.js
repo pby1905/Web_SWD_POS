@@ -72,14 +72,12 @@ const ListProduct = () => {
                                 <span className="product-quantity">{`Quantity: ${product.quantity}`}</span>
                                 <span className="product-price">{`Price: $${product.price.toFixed(2)}`}</span>
                             </div>
-                            <div className="product-buttons">
-                                <button className="edit" onClick={() => handleEdit(product.productId)}>
-                                    Edit
-                                </button>
-                                <button className="delete" onClick={() => handleDelete(product.productId)}>
-                                    Delete
-                                </button>
-                            </div>
+                            <button className="edit edit-button" onClick={() => handleEdit(product.productId)}>
+                                Edit
+                            </button>
+                            <button className="delete delete-button" onClick={() => handleDelete(product.productId)}>
+                                Delete
+                            </button>
                         </li>
                     ))}
                 </ul>

@@ -12,11 +12,11 @@
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Đặt justify-content thành center để giữ sản phẩm ở giữa trang */
+    justify-content: center;
 }
 
 .order-item {
-    width: 100%; /* Thay đổi chiều rộng thành 100% để hiển thị sản phẩm trên một dòng */
+    width: 100%;
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ddd;
@@ -40,12 +40,13 @@
 }
 
 .order-title {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: xx-large;
     color: black;
 }
 
 .product-name {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -93,18 +94,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 .order-item .product-image {
-    flex: 0 0 auto; 
-    width: 100px; 
+    flex: 0 0 auto;
+    width: 100px;
     height: auto;
     margin-right: 20px;
 }
 
 .order-item .order-details {
-    flex: 1; 
+    flex: 1;
 }
-
-
