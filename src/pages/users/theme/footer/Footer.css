@@ -1,0 +1,10 @@
+/* Footer.css */
+.footer {
+    background-color: #35b6e0; /* Sử dụng mã màu hex */
+    /* Hoặc sử dụng giá trị RGBA */
+    /* background-color: rgba(173, 216, 230, 0.8); */
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 1px;
+    text-align: center;
+}

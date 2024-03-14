@@ -45,6 +45,9 @@ const EditProduct = () => {
             console.error('Error updating product:', error);
         }
     };
+    const handleCancel = () => {
+        navigate(-1); // Chuyển về trang trước đó
+    };
 
     return (
         <div className="edit-product-container">
@@ -100,8 +103,13 @@ const EditProduct = () => {
                 />
             </div>
 
-            <div>
-                <button onClick={handleSaveChanges}>Save Changes</button>
+            <div className="edit-button-container">
+                <button className="add-button" onClick={handleSaveChanges}>
+                    Save
+                </button>
+                <button className="cancel-button" onClick={handleCancel}>
+                    Cancel
+                </button>
             </div>
         </div>
     );

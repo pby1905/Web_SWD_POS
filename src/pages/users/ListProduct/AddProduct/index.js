@@ -28,6 +28,9 @@ const AddProduct = () => {
             console.error('Error adding product:', error);
         }
     };
+    const handleCancel = () => {
+        navigate(-1); // Chuyển về trang trước đó
+    };
 
     return (
         <div className="add-product-container">
@@ -91,8 +94,13 @@ const AddProduct = () => {
                     }
                 />
             </div>
-            <div>
-                <button onClick={handleAddProduct}>Add Product</button>
+            <div className="button-container">
+                <button className="add-button" onClick={handleAddProduct}>
+                    Add Product
+                </button>
+                <button className="cancel-button" onClick={handleCancel}>
+                    Cancel
+                </button>
             </div>
         </div>
     );

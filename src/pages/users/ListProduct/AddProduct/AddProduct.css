@@ -3,49 +3,85 @@
 /* Container styling */
 .add-product-container {
     max-width: 700px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    padding: 30px 20px;
+    background-color: #f9f9f9;
+    border-radius: 50px; /* Bo góc với bán kính là 12px */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Heading styling */
 .add-product-container h2 {
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-bottom: 30px;
-    font-size: 36px;
+    font-size: 28px; /* Giảm kích thước font */
     text-align: center;
+    color: #333; /* Màu chữ đậm hơn */
 }
 
 /* Input field styling */
 .add-product-container label {
-    font-size: 18px;
+    font-weight: bold;
+    font-size: 16px; /* Giảm kích thước font */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-right: 10px;
+    color: #666; /* Màu chữ nhạt hơn */
 }
 
 .add-product-container input {
-    width: 95%;
+    width: calc(100% - 24px); /* Điều chỉnh kích thước input */
     padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid#3498db;
     border-radius: 8px;
     font-size: 16px;
 }
 
 /* Save button styling */
-.add-product-container button {
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.add-product-container .add-button {
     background-color: #3498db;
     color: #fff;
     padding: 15px 25px;
     border: none;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 18px;
     transition: background-color 0.3s;
 }
 
-.add-product-container button:hover {
+.add-product-container .add-button:hover {
     background-color: #217dbb;
 }
 
+/* Cancel button styling */
+.add-product-container .cancel-button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    margin-right: 10px; /* Để tạo khoảng cách giữa các nút */
+}
+
+.add-product-container .cancel-button:hover {
+    background-color: #c0392b;
+}
 /* AddProduct.css */
+
+/* Preview image styling */
+.preview-image {
+    max-width: 300px;
+    max-height: 200px;
+    margin-top: 10px;
+}
