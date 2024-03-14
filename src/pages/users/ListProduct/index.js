@@ -1,10 +1,9 @@
-// ListProduct.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import './ListProduct.css';
-import {deleteProductAPI} from '../../../Service/APIService';
+import { deleteProductAPI } from '../../../Service/APIService';
 const itemsPerPage = 5;
 
 const ListProduct = () => {
@@ -23,9 +22,7 @@ const ListProduct = () => {
             setLoading(false);
         }
     };
-    
 
-   
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -37,7 +34,7 @@ const ListProduct = () => {
     const displayedProducts = products.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
     const handleEdit = (productId) => {
-        navigate(`/editproduct/${productId}`);
+        navigate(`/editproduct/${productId}`); // Chuyển hướng đến trang chỉnh sửa sản phẩm với id của sản phẩm
     };
 
     const handleDelete = async (productId) => {
@@ -75,14 +72,12 @@ const ListProduct = () => {
                                 <span className="product-quantity">{`Quantity: ${product.quantity}`}</span>
                                 <span className="product-price">{`Price: $${product.price.toFixed(2)}`}</span>
                             </div>
-                            <div className="product-buttons">
-                                <button className="edit" onClick={() => handleEdit(product.productId)}>
-                                    Edit
-                                </button>
-                                <button className="delete" onClick={() => handleDelete(product.productId)}>
-                                    Delete
-                                </button>
-                            </div>
+                            <button className="edit edit-button" onClick={() => handleEdit(product.productId)}>
+                                Edit
+                            </button>
+                            <button className="delete delete-button" onClick={() => handleDelete(product.productId)}>
+                                Delete
+                            </button>
                         </li>
                     ))}
                 </ul>

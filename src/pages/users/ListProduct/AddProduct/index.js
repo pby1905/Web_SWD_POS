@@ -23,10 +23,13 @@ const AddProduct = () => {
         try {
             await axios.post('https://localhost:7052/Products/addProduct', product);
             console.log('Product added:', product);
-            navigate('/listproduct');
+            navigate('/listproduct'); // Chuyển hướng người dùng đến trang ListProduct sau khi thêm sản phẩm thành công
         } catch (error) {
             console.error('Error adding product:', error);
         }
+    };
+    const handleCancel = () => {
+        navigate(-1); // Chuyển về trang trước đó
     };
 
     return (
@@ -82,7 +85,7 @@ const AddProduct = () => {
                     type="text"
                     id="imagePath"
                     name="imagePath"
-                    value={product.addImages[0].imagePath}
+                    value={product.addImages.length > 0 ? product.addImages[0].imagePath : ''}
                     onChange={(e) =>
                         setProduct((prevProduct) => ({
                             ...prevProduct,
@@ -91,8 +94,13 @@ const AddProduct = () => {
                     }
                 />
             </div>
-            <div>
-                <button onClick={handleAddProduct}>Add Product</button>
+            <div className="button-container">
+                <button className="add-button" onClick={handleAddProduct}>
+                    Add Product
+                </button>
+                <button className="cancel-button" onClick={handleCancel}>
+                    Cancel
+                </button>
             </div>
         </div>
     );

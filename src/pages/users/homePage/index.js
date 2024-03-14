@@ -11,10 +11,12 @@ const HomePage = () => {
 
     return (
         <div className="container">
-            <h1 className="text">Welcome to POS-System</h1>
-            <button className="button" onClick={handleStartClick}>
-                Start
-            </button>
+            <div className="container-text">
+                <h1 className="text">Welcome to POS-System</h1>
+                <button className="button" onClick={handleStartClick}>
+                    Start
+                </button>
+            </div>
         </div>
     );
 };

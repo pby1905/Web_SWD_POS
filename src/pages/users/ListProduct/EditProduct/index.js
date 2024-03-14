@@ -1,5 +1,5 @@
-// EditProduct.js
 import React, { useState, useEffect } from 'react';
+
 import { useParams } from 'react-router-dom';
 import './EditProduct.css'; // Import CSS file
 import { apiGetProductById, updateProduct } from '~/Service/APIService';
@@ -47,17 +47,22 @@ const EditProduct = () => {
             console.log(error)
         }
 
+
     };
 
     return (
         <div className="edit-product-container">
             <h2>Edit Product</h2>
             <div>
-                <img src={product.imageUrl} className="image-preview" />
+                {product.images && product.images.length > 0 && (
+                    <img src={product.images[0].imagePath} className="image-preview" alt="Product" />
+                )}
             </div>
             <div>
+
                 <label htmlFor="name">Product Name:</label>
                 <input placeholder={detailProduct.productName ? detailProduct.productName : ''} type="text" id="name" name="name" value={product.name} onChange={handleInputChange} />
+              
             </div>
             <div>
                 <label htmlFor="quantity">Quantity:</label>
@@ -74,9 +79,10 @@ const EditProduct = () => {
                 <label htmlFor="price">Price:</label>
                 <input placeholder={detailProduct.price ? detailProduct.price : ''} type="number" id="price" name="price" value={product.price} onChange={handleInputChange} />
             </div>
-
             <div>
+
                 <button onClick={fetchingData}>Save Changes</button>
+
             </div>
         </div>
     );

@@ -36,6 +36,7 @@ const OrderSuccess = () => {
         <div className="order-success-container">
             <div className="order-title">Order Success</div>
             <ul className="order-list">
+
                 {order?.map((product) => ( // Sử dụng order thay vì Iphone
                     <li key={product.id} className="order-item">
                         <img src={product.imageOrders[0]?.imagePath} alt={product.productN[0]?.productName} className="product-image" />

@@ -1,6 +1,7 @@
 .header-container {
-    background-color: blue;
+    background-color: #35b6e0; /* Sử dụng mã màu hex */
     color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
     padding: 10px;
     display: flex;
