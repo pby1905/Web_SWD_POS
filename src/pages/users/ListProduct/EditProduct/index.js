@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './EditProduct.css';
 import { apiGetProductById, updateProduct } from '~/Service/APIService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const EditProduct = () => {
     const { id } = useParams();
@@ -61,10 +64,12 @@ const EditProduct = () => {
         try {
             const res = await updateProduct(id, product);
             console.log(res);
-            navigate('/listproduct'); // Chuyển hướng đến '/listproduct' sau khi lưu thành công bằng navigate
+            toast.success('Product updated successfully');
+            navigate('/listproduct');
             return res;
         } catch (error) {
             console.log(error);
+            toast.error('Failed to update product');
         }
     };
     const handleCancel = () => {

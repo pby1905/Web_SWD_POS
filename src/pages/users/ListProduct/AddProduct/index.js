@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import './AddProduct.css';
 
 const AddProduct = () => {
@@ -23,13 +24,15 @@ const AddProduct = () => {
         try {
             await axios.post('https://localhost:7052/Products/addProduct', product);
             console.log('Product added:', product);
-            navigate('/listproduct'); // Chuyển hướng người dùng đến trang ListProduct sau khi thêm sản phẩm thành công
+            toast.success('Product added successfully');
+            navigate('/listproduct');
         } catch (error) {
             console.error('Error adding product:', error);
+            toast.error('Error adding product');
         }
     };
     const handleCancel = () => {
-        navigate(-1); // Chuyển về trang trước đó
+        navigate(-1);
     };
 
     return (
