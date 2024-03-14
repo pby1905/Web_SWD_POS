@@ -2,26 +2,51 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './EditProduct.css'; // Import CSS file
+import { apiGetProductById, updateProduct } from '~/Service/APIService';
 
 const EditProduct = () => {
     const { id } = useParams();
 
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState({
+        name: '',
+        price: 0,
+        quantity: 0,
+    });
+    const [detailProduct, setDetailProduct] = useState([])
 
     useEffect(() => {
-        // Tải dữ liệu sản phẩm từ nguồn dữ liệu của bạn (API hoặc Redux store)
-        // sử dụng id để xác định sản phẩm cần chỉnh sửa
-        // và cập nhật state 'product' với dữ liệu tương ứng
-    }, [id]);
+        getProductID()
+        fetchingData()
+    }, []);
+
+    console.log(detailProduct)
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target
+        console.log(product)
+
         setProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
     };
 
-    const handleSaveChanges = () => {
-        // Đây là nơi bạn có thể gửi dữ liệu cập nhật lên server hoặc cập nhật Redux store
-        console.log('Product updated:', product);
+    const getProductID = async () => {
+        try {
+            const res = await apiGetProductById(id)
+            setDetailProduct(res)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const fetchingData = async () => {
+        try {
+            const res = await updateProduct(id, product)
+            console.log(res)
+            return res
+        } catch (error) {
+            console.log(error)
+        }
+
     };
 
     return (
@@ -32,7 +57,7 @@ const EditProduct = () => {
             </div>
             <div>
                 <label htmlFor="name">Product Name:</label>
-                <input type="text" id="name" name="name" value={product.name} onChange={handleInputChange} />
+                <input placeholder={detailProduct.productName ? detailProduct.productName : ''} type="text" id="name" name="name" value={product.name} onChange={handleInputChange} />
             </div>
             <div>
                 <label htmlFor="quantity">Quantity:</label>
@@ -42,15 +67,16 @@ const EditProduct = () => {
                     name="quantity"
                     value={product.quantity}
                     onChange={handleInputChange}
+                    placeholder={detailProduct.quantity ? detailProduct.quantity : ''}
                 />
             </div>
             <div>
                 <label htmlFor="price">Price:</label>
-                <input type="number" id="price" name="price" value={product.price} onChange={handleInputChange} />
+                <input placeholder={detailProduct.price ? detailProduct.price : ''} type="number" id="price" name="price" value={product.price} onChange={handleInputChange} />
             </div>
 
             <div>
-                <button onClick={handleSaveChanges}>Save Changes</button>
+                <button onClick={fetchingData}>Save Changes</button>
             </div>
         </div>
     );

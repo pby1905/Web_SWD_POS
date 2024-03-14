@@ -36,15 +36,15 @@ const OrderSuccess = () => {
         <div className="order-success-container">
             <div className="order-title">Order Success</div>
             <ul className="order-list">
-                {order.map((product) => ( // Sử dụng order thay vì Iphone
-                   <li key={product.id} className="order-item">
-                   <img src={product.imageOrders[0].imagePath} alt={product.productN.productName} className="product-image" />
-                   <div className="order-details">
-                       <div className="product-name">{product.productN.productName}</div>
-                       <div className="product-quantity">Quantity: {product.quantity}</div>
-                       <div className="product-price">Price: {product.price}</div>
-                   </div>
-               </li>
+                {order?.map((product) => ( // Sử dụng order thay vì Iphone
+                    <li key={product.id} className="order-item">
+                        <img src={product.imageOrders[0]?.imagePath} alt={product.productN[0]?.productName} className="product-image" />
+                        <div className="order-details">
+                            <div className="product-name">{product.productN.productName}</div>
+                            <div className="product-quantity">Quantity: {product.quantity}</div>
+                            <div className="product-price">Price: {product.price}</div>
+                        </div>
+                    </li>
                 ))}
             </ul>
             <ReactPaginate
