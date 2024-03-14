@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './EditProduct.css';
 
 const EditProduct = () => {
-    const { id } = useParams();
+    const { productId } = useParams();
+    const navigate = useNavigate();
     const [product, setProduct] = useState({
         productName: '',
         price: 0,
@@ -16,7 +17,7 @@ const EditProduct = () => {
     useEffect(() => {
         async function fetchProduct() {
             try {
-                const response = await axios.get(`https://localhost:7052/Products/GetProductById?id=${id}`);
+                const response = await axios.get(`https://localhost:7052/Products/UpdateProduct?id=${productId}`);
                 setProduct(response.data);
             } catch (error) {
                 console.error('Error fetching product:', error);
@@ -24,7 +25,7 @@ const EditProduct = () => {
         }
 
         fetchProduct();
-    }, [id]);
+    }, [productId]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -36,8 +37,10 @@ const EditProduct = () => {
 
     const handleSaveChanges = async () => {
         try {
-            await axios.put(`https://localhost:7052/Products/UpdateProduct?productId=${id}`, product);
+            // Gửi dữ liệu sản phẩm qua API để cập nhật
+            await axios.put(`https://localhost:7052/Products/UpdateProduct?productId=${productId}`, product);
             console.log('Product updated:', product);
+            navigate('/listproduct');
         } catch (error) {
             console.error('Error updating product:', error);
         }
@@ -47,7 +50,9 @@ const EditProduct = () => {
         <div className="edit-product-container">
             <h2>Edit Product</h2>
             <div>
-                <img src={product.images[0].imagePath} className="image-preview" alt="Product" />
+                {product.images && product.images.length > 0 && (
+                    <img src={product.images[0].imagePath} className="image-preview" alt="Product" />
+                )}
             </div>
             <div>
                 <label htmlFor="productName">Product Name:</label>

@@ -23,7 +23,7 @@ const AddProduct = () => {
         try {
             await axios.post('https://localhost:7052/Products/addProduct', product);
             console.log('Product added:', product);
-            navigate('/listproduct');
+            navigate('/listproduct'); // Chuyển hướng người dùng đến trang ListProduct sau khi thêm sản phẩm thành công
         } catch (error) {
             console.error('Error adding product:', error);
         }
@@ -82,7 +82,7 @@ const AddProduct = () => {
                     type="text"
                     id="imagePath"
                     name="imagePath"
-                    value={product.addImages[0].imagePath}
+                    value={product.addImages.length > 0 ? product.addImages[0].imagePath : ''}
                     onChange={(e) =>
                         setProduct((prevProduct) => ({
                             ...prevProduct,

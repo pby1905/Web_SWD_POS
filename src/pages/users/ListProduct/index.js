@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import './ListProduct.css';
-import {deleteProductAPI} from '../../../Service/APIService';
+import { deleteProductAPI } from '../../../Service/APIService';
 const itemsPerPage = 5;
 
 const ListProduct = () => {
@@ -22,9 +22,7 @@ const ListProduct = () => {
             setLoading(false);
         }
     };
-    
 
-   
     useEffect(() => {
         fetchProducts();
     }, []);
