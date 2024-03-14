@@ -1,52 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import './EditProduct.css';
+
+import { useParams } from 'react-router-dom';
+import './EditProduct.css'; // Import CSS file
+import { apiGetProductById, updateProduct } from '~/Service/APIService';
 
 const EditProduct = () => {
-    const { productId } = useParams();
-    const navigate = useNavigate();
+    const { id } = useParams();
+
     const [product, setProduct] = useState({
-        productName: '',
+        name: '',
         price: 0,
         quantity: 0,
-        description: '',
-        images: [{ imagePath: '' }],
     });
+    const [detailProduct, setDetailProduct] = useState([])
 
     useEffect(() => {
-        async function fetchProduct() {
-            try {
-                const response = await axios.get(`https://localhost:7052/Products/UpdateProduct?id=${productId}`);
-                setProduct(response.data);
-            } catch (error) {
-                console.error('Error fetching product:', error);
-            }
-        }
+        getProductID()
+        fetchingData()
+    }, []);
 
-        fetchProduct();
-    }, [productId]);
+    console.log(detailProduct)
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setProduct((prevProduct) => ({
-            ...prevProduct,
-            [name]: value,
-        }));
+        const { name, value } = e.target
+        console.log(product)
+
+        setProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
     };
 
-    const handleSaveChanges = async () => {
+    const getProductID = async () => {
         try {
-            // Gửi dữ liệu sản phẩm qua API để cập nhật
-            await axios.put(`https://localhost:7052/Products/UpdateProduct?productId=${productId}`, product);
-            console.log('Product updated:', product);
-            navigate('/listproduct');
+            const res = await apiGetProductById(id)
+            setDetailProduct(res)
+
         } catch (error) {
-            console.error('Error updating product:', error);
+            console.log(error)
         }
-    };
-    const handleCancel = () => {
-        navigate(-1); // Chuyển về trang trước đó
+    }
+
+    const fetchingData = async () => {
+        try {
+            const res = await updateProduct(id, product)
+            console.log(res)
+            return res
+        } catch (error) {
+            console.log(error)
+        }
+
+
     };
 
     return (
@@ -58,14 +59,10 @@ const EditProduct = () => {
                 )}
             </div>
             <div>
-                <label htmlFor="productName">Product Name:</label>
-                <input
-                    type="text"
-                    id="productName"
-                    name="productName"
-                    value={product.productName}
-                    onChange={handleInputChange}
-                />
+
+                <label htmlFor="name">Product Name:</label>
+                <input placeholder={detailProduct.productName ? detailProduct.productName : ''} type="text" id="name" name="name" value={product.name} onChange={handleInputChange} />
+              
             </div>
             <div>
                 <label htmlFor="quantity">Quantity:</label>
@@ -75,41 +72,17 @@ const EditProduct = () => {
                     name="quantity"
                     value={product.quantity}
                     onChange={handleInputChange}
+                    placeholder={detailProduct.quantity ? detailProduct.quantity : ''}
                 />
             </div>
             <div>
                 <label htmlFor="price">Price:</label>
-                <input type="number" id="price" name="price" value={product.price} onChange={handleInputChange} />
+                <input placeholder={detailProduct.price ? detailProduct.price : ''} type="number" id="price" name="price" value={product.price} onChange={handleInputChange} />
             </div>
             <div>
-                <label htmlFor="description">Description:</label>
-                <textarea
-                    id="description"
-                    name="description"
-                    value={product.description}
-                    onChange={handleInputChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="imagePath">Image URL:</label>
-                <input
-                    type="text"
-                    id="imagePath"
-                    name="imagePath"
-                    value={product.images[0].imagePath}
-                    onChange={(e) =>
-                        setProduct((prevProduct) => ({ ...prevProduct, images: [{ imagePath: e.target.value }] }))
-                    }
-                />
-            </div>
 
-            <div className="edit-button-container">
-                <button className="add-button" onClick={handleSaveChanges}>
-                    Save
-                </button>
-                <button className="cancel-button" onClick={handleCancel}>
-                    Cancel
-                </button>
+                <button onClick={fetchingData}>Save Changes</button>
+
             </div>
         </div>
     );
