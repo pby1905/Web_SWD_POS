@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './ListProduct.css';
 import { deleteProductAPI } from '../../../Service/APIService';
 const itemsPerPage = 5;
@@ -38,10 +41,17 @@ const ListProduct = () => {
     };
 
     const handleDelete = async (productId) => {
-        await deleteProductAPI(productId);
-        window.location.reload();
-        console.log(`Delete product with ID: ${productId}`);
+        try {
+            await deleteProductAPI(productId);
+            toast.success('Product deleted successfully');
+            window.location.reload();
+            console.log(`Delete product with ID: ${productId}`);
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            toast.error('Failed to delete product');
+        }
     };
+
 
     if (loading) {
         return <div>Loading...</div>;
