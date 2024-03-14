@@ -89,3 +89,22 @@
 .product-buttons button.delete:hover {
     background-color: rgb(243, 54, 54);
 }
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; 
+}
+
+.order-item .product-image {
+    flex: 0 0 auto; 
+    width: 100px; 
+    height: auto;
+    margin-right: 20px;
+}
+
+.order-item .order-details {
+    flex: 1; 
+}
+
+
