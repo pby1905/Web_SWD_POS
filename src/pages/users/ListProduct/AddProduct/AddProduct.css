@@ -71,15 +71,12 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 18px;
     transition: background-color 0.3s;
-    margin-right: 10px; /* Để tạo khoảng cách giữa các nút */
+    margin-right: 10px;
 }
 
 .add-product-container .cancel-button:hover {
     background-color: #c0392b;
 }
-/* AddProduct.css */
-
-/* Preview image styling */
 .preview-image {
     max-width: 300px;
     max-height: 200px;

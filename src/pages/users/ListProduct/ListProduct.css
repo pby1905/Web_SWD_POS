@@ -1,6 +1,7 @@
 /* ListProduct.css */
 
 .product-list-container-all h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
     font-size: xx-large;
 }
@@ -8,18 +9,20 @@
     font-weight: bold;
     margin-left: 10px;
     cursor: pointer;
+    border: none;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 16px;
     padding: 10px 15px;
     border-radius: 8px;
-    background-color: #35b6e0; /* Sử dụng mã màu hex */
+    background-color: #35b6e0;
     color: white;
     transition: background-color 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 .add-product:hover {
     background-color: rgb(43, 128, 224);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 1);
 }
 
 .product-list-container {
@@ -71,43 +74,51 @@
     color: black;
 }
 
-.product-quantity {
+.product-quantity-f {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 14px;
-    color: #fb0303;
+    color: black;
     margin-top: 5px;
 }
 .product-price {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 14px;
-    color: #000000;
+    font-size: 20px;
+    color: #fb0303;
     margin-top: 5px;
 }
-
-/* Trong file CSS của bạn */
-/* Trong file CSS của bạn */
-.edit-button {
-    background-color: #35b6e0; /* Màu nền */
-    color: white; /* Màu chữ */
+.list-edit-button {
+    background-color: #35b6e0;
+    border: none;
+    color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 16px; /* Kích thước chữ */
-    padding: 10px 20px; /* Khoảng cách giữa nút */
+    font-size: 16px;
+    padding: 10px 20px;
     border-radius: 20px;
-    font-weight: bold; /* Chữ in đậm */
-    margin-right: 10px; /* Khoảng cách với nút bên cạnh */
+    font-weight: bold;
+    margin-right: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease;
 }
-
-.delete-button {
-    background-color: red; /* Màu nền */
-    color: white; /* Màu chữ */
+.list-edit-button:hover {
+    background-color: #217dbb;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+.list-delete-button {
+    background-color: red;
+    border: none;
+    color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 16px; /* Kích thước chữ */
+    font-size: 16px;
     border-radius: 20px;
-    padding: 10px 20px; /* Khoảng cách giữa nút */
-    font-weight: bold; /* Chữ in đậm */
+    padding: 10px 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease;
 }
-
-/* ListProduct.css */
+.list-delete-button:hover {
+    background-color: #c0392b;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
 
 .pagination {
     display: flex;
