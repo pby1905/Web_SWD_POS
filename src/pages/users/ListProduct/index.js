@@ -69,13 +69,13 @@ const ListProduct = () => {
                             )}
                             <div className="product-info">
                                 <span className="product-name">{product.productName}</span>
-                                <span className="product-quantity">{`Quantity: ${product.quantity}`}</span>
+                                <span className="product-quantity-f">{`Quantity: ${product.quantity}`}</span>
                                 <span className="product-price">{`Price: $${product.price.toFixed(2)}`}</span>
                             </div>
-                            <button className="edit edit-button" onClick={() => handleEdit(product.productId)}>
+                            <button className="list-edit-button" onClick={() => handleEdit(product.productId)}>
                                 Edit
                             </button>
-                            <button className="delete delete-button" onClick={() => handleDelete(product.productId)}>
+                            <button className="list-delete-button" onClick={() => handleDelete(product.productId)}>
                                 Delete
                             </button>
                         </li>
