@@ -8,6 +8,7 @@ import HomePage from '~/pages/users/homePage';
 import ProfilePage from '~/pages/users/profilePage';
 import MasterLayout from '~/pages/users/theme/masterLayout';
 import { ROUTERS } from '~/utils/router';
+import Dashboard from '~/pages/users/Dashboard';
 
 const renderUserRouter = () => {
     const userRouters = [
@@ -39,7 +40,10 @@ const renderUserRouter = () => {
             path: '/orderdetail/:id',
             component: <OrderDetail />,
         },
-
+        {
+            path: '/dashboard',
+            component: <Dashboard />,
+        },
     ];
     return (
         <MasterLayout>

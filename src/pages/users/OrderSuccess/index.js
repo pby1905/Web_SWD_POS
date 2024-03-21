@@ -34,9 +34,9 @@ const OrderSuccess = () => {
         setOrder(order); // Sét state order với dữ liệu trả về từ getOrder()
     };
 
-    const handleViewDetails = (productId) => {
-        navigate(`/order/${productId}`);
-        console.log("View details for product ID:", productId);
+    const handleViewDetails = (orderId) => {
+        navigate(`/orderdetail/${orderId}`);
+        console.log("View details for product ID:", orderId);
     };
 
     return (
@@ -52,7 +52,7 @@ const OrderSuccess = () => {
                             title={<a className="product-name" href="#">{product.orderDetail.productName}</a>}
                             description={<span className="product-details">{`Total Quantity: ${product.totalQuantity}, Total Price: ${product.totalPrice}`}</span>}
                         />
-                        <Button className="view-details-btn" type="primary" onClick={() => handleViewDetails(product.orderDetail.productId)}>View Details</Button>
+                        <Button className="view-details-btn" type="primary" onClick={() => handleViewDetails(product.orderId)}>View Details</Button>
                     </List.Item>
                 )}
             />
