@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import OrderDetail from '~/pages/users/OrderDetail';
 import ListProduct from '~/pages/users/ListProduct';
 import AddProduct from '~/pages/users/ListProduct/AddProduct';
 import EditProduct from '~/pages/users/ListProduct/EditProduct';
@@ -34,6 +35,11 @@ const renderUserRouter = () => {
             path: '/order',
             component: <OrderSuccess />,
         },
+        {
+            path: '/orderdetail/:id',
+            component: <OrderDetail />,
+        },
+
     ];
     return (
         <MasterLayout>
