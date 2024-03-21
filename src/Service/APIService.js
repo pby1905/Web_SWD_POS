@@ -2,8 +2,8 @@ import axios from './CustomService';
 const getOrder = () => {
     return axios.get('Order/Order_Successfully');
 }
-const getOrderDetail = (productId) => {
-    return axios.get(`Order/Order_Detail?orderId=${productId}`);
+const getOrderDetail = (orderId) => {
+    return axios.get(`Order/Order_Detail?orderId=${orderId}`);
 }
 const deleteProductAPI = (productId) => {
     return axios.post(`Products/deleteProduct?productID=${productId}`)

@@ -1,53 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Descriptions, Card, Image } from 'antd';
-import { getOrderDetail } from '~/Service/APIService';
-
-const { Meta } = Card;
+import axios from 'axios';
+import './OrderDetail.css'; 
 
 const OrderDetail = () => {
     const { id } = useParams();
-    const [detailOrder, setDetailOrder] = useState({});
+    const [detailOrder, setDetailOrder] = useState(null);
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetchData();
-    }, [id]);
-
-    const fetchData = async () => {
+    const fetchOrderDetail = async () => {
         try {
-            const res = await getOrderDetail(id);
-            setDetailOrder(res);
+            const response = await axios.get(`https://localhost:7052/Order/Order_Detail?orderId=${id}`);
+            setDetailOrder(response.data);
+            setProduct(response.data.product[0]);
+            setLoading(false);
         } catch (error) {
-            console.log(error);
+            console.error('Error fetching order detail:', error);
+            setLoading(false);
         }
     };
 
-    if (!detailOrder) {
+    useEffect(() => {
+        fetchOrderDetail();
+    }, []);
+
+    if (loading) {
         return <div>Loading...</div>;
     }
 
-    const { orderId, totalPrice, creationDate, totalQuantity, product } = detailOrder;
+    if (!detailOrder) {
+        return <div>No data found</div>;
+    }
+
+    const { totalPrice, creationDate, totalQuantity } = detailOrder;
 
     return (
         <div className="order-detail-container">
-            <h2 className="order-detail-title">Order Detail</h2>
-            <Card style={{ width: 600, marginTop: 16 }}>
-                <Descriptions title="Order Info">
-                    <Descriptions.Item label="Order ID">{orderId}</Descriptions.Item>
-                    <Descriptions.Item label="Total Price">${totalPrice}</Descriptions.Item>
-                    <Descriptions.Item label="Order Date">{creationDate ? new Date(creationDate).toLocaleDateString() : 'N/A'}</Descriptions.Item>
-                    <Descriptions.Item label="Total Quantity">{totalQuantity}</Descriptions.Item>
-                </Descriptions>
-            </Card>
-            <Card style={{ width: 600, marginTop: 16 }}>
-                <h3>Product Information</h3>
-                {product.map(item => (
-                    <Card key={item.productId} style={{ width: 300, marginBottom: 16 }} cover={<Image alt={item.productName} src={item.image} />}>
-                        <Meta title={item.productName} description={`Price: $${item.price}, Quantity: ${item.quantity}`} />
-                    </Card>
-                ))}
-            </Card>
+        <h2 className="order-detail-title">Order Detail</h2>
+    
+        <div className="order-detail-card">
+            <div className="order-detail-image-container">
+                <img src={product.image} alt={product.productName} className="order-detail-image" />
+            </div>
+            <div className="order-detail-info">
+                <div className="order-detail-product-name">
+                    <strong>{product.productName}</strong>
+                </div>
+                <div className='order-detail-product-des'>
+                    <p>Price: ${product.price}</p>
+                    <p>Quantity: {product.quantity}</p>
+                    <p>Order Date: {creationDate ? new Date(creationDate).toLocaleDateString() : 'N/A'}</p>
+                    <p>Total Price: ${totalPrice}</p>
+                    <p>Total Quantity: {totalQuantity}</p>
+                    <p className="order-detail-total-price">Total: ${totalPrice * totalQuantity}</p>
+                </div>
+               
+            </div>
         </div>
+    </div>
+    
+    
     );
 };
 
