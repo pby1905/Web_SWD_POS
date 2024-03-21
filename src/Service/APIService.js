@@ -1,17 +1,20 @@
-import axios  from './CustomService';
-const getOrder =() =>{
+import axios from './CustomService';
+const getOrder = () => {
     return axios.get('Order/Order_Successfully');
 }
-const deleteProductAPI =(productId) =>{
-return axios.post(`Products/deleteProduct?productID=${productId}`)
+const getOrderDetail = (productId) => {
+    return axios.get(`Order/Order_Detail?orderId=${productId}`);
 }
-const getAllProduct =() =>{
+const deleteProductAPI = (productId) => {
+    return axios.post(`Products/deleteProduct?productID=${productId}`)
+}
+const getAllProduct = () => {
     return axios.get('Products/ProductList');
 }
-const updateProduct = (productId,Requestdata) =>{
-    return axios.post(`Products/UpdateProduct?productId=${productId}`,Requestdata);
+const updateProduct = (productId, Requestdata) => {
+    return axios.post(`Products/UpdateProduct?productId=${productId}`, Requestdata);
 }
-const apiGetProductById = (productId)=>{
+const apiGetProductById = (productId) => {
     return axios.get(`Products/getProductID?productId=${productId}`)
 }
-export {getOrder,deleteProductAPI,getAllProduct,updateProduct, apiGetProductById};
+export { getOrder, deleteProductAPI, getAllProduct, updateProduct, apiGetProductById, getOrderDetail };
