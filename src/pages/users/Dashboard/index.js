@@ -24,11 +24,17 @@ const Dashboard = () => {
             if (isValidMonth(month)) {
                 const totalMonthRevenueResponse = await axios.get(`https://localhost:7052/Order/Total_MonthRevenue?month=${month}`);
                 setRevenueByMonth(totalMonthRevenueResponse.data);
+                console.log(totalMonthRevenueResponse);
                 updateCharts(totalRevenueResponse.data, totalOrdersResponse.data, totalMonthRevenueResponse.data);
             } else {
                 console.error('Invalid month. Month should be between 1 and 12.');
                 // Handle error here, e.g., display a message to the user
             }
+            // const totalmoneymonth = await axios.get('https://localhost:7052/Order/Total_MonthRevenue?month=3');
+            // console.log(totalmoneymonth);
+            // setRevenueByMonth(totalmoneymonth);
+            // updateCharts(totalmoneymonth);
+            
         } catch (error) {
             console.error('Error fetching data:', error);
             // Handle error here, e.g., display a message to the user
@@ -82,49 +88,49 @@ const Dashboard = () => {
             }
         });
 
-        // Line chart for revenue by month
-        if (Array.isArray(revenueByMonth) && revenueByMonth.length > 0) {
-            const revenueByMonthChart = document.getElementById('revenueByMonthChart').getContext('2d');
-            new Chart(revenueByMonthChart, {
-                type: 'line',
-                data: {
-                    labels: revenueByMonth.map(month => month.month),
-                    datasets: [{
-                        label: 'Revenue by Month',
-                        data: revenueByMonth.map(month => month.totalRevenue),
-                        borderColor: '#FF5722',
-                        borderWidth: 2,
-                        fill: false
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        } else {
-            console.error('Error: Invalid or empty revenueByMonth data');
-            // Handle error here, if necessary
-        }
+        // // Line chart for revenue by month
+        // if (Array.isArray(revenueByMonth) && revenueByMonth.length > 0) {
+        //     const revenueByMonthChart = document.getElementById('revenueByMonthChart').getContext('2d');
+        //     new Chart(revenueByMonthChart, {
+        //         type: 'line',
+        //         data: {
+        //             labels: revenueByMonth.map(month => month.month),
+        //             datasets: [{
+        //                 label: 'Revenue by Month',
+        //                 data: revenueByMonth.map(month => month.totalRevenue),
+        //                 borderColor: '#FF5722',
+        //                 borderWidth: 2,
+        //                 fill: false
+        //             }]
+        //         },
+        //         options: {
+        //             scales: {
+        //                 y: {
+        //                     beginAtZero: true
+        //                 }
+        //             }
+        //         }
+        //     });
+        // } else {
+        //     console.error('Error: Invalid or empty revenueByMonth data');
+        //     // Handle error here, if necessary
+        // }
     };
 
     return (
         <div className="dashboard-container">
             <Card>
-                <Statistic title="Total Revenue" value={totalRevenue} precision={2} suffix="USD" />
+                <Statistic title="Total Revenue" value={totalRevenue}  suffix="VND" />
                 <canvas id="revenueChart" width="400" height="400"></canvas>
             </Card>
             <Card>
                 <Statistic title="Total Orders" value={totalOrders} />
                 <canvas id="ordersChart" width="400" height="400"></canvas>
             </Card>
-            <Card>
-                <Statistic title="Revenue by Month" value={revenueByMonth} precision={2} suffix="USD" />
+            {/* <Card>
+                <Statistic title="Revenue by Month" value={revenueByMonth} suffix="VND" />
                 <canvas id="revenueByMonthChart" width="400" height="400"></canvas>
-            </Card>
+            </Card> */}
         </div>
     );
 };
