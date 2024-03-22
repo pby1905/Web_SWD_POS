@@ -16,5 +16,9 @@ const updateProduct = (productId, Requestdata) => {
 }
 const apiGetProductById = (productId) => {
     return axios.get(`Products/getProductID?productId=${productId}`)
+
 }
-export { getOrder, deleteProductAPI, getAllProduct, updateProduct, apiGetProductById, getOrderDetail };
+const totalMonthRevenue = (monthID) =>{
+ return axios.get(`Order/Total_MonthRevenue?month=${monthID}`)
+}
+export { getOrder, deleteProductAPI, getAllProduct, updateProduct, apiGetProductById, getOrderDetail ,totalMonthRevenue};
